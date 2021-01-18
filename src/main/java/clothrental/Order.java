@@ -55,6 +55,9 @@ public class Order {
 
         clothrental.external.Cancellation cancellation = new clothrental.external.Cancellation();
         // mappings goes here
+        // 아래 this는 Order 어그리게이트
+        cancellation.setOrderId(this.getId());
+        cancellation.setStatus("Delivery Cancelled");
         OrderApplication.applicationContext.getBean(clothrental.external.CancellationService.class)
             .cancelship(cancellation);
 
@@ -90,8 +93,5 @@ public class Order {
     public void setStatus(String status) {
         this.status = status;
     }
-
-
-
 
 }
